@@ -283,26 +283,3 @@ function CandyMatch() {
 }
 
 ReactDOM.render(<CandyMatch />, document.getElementById('root'));
-```
-
-4. Clique em **"Commit changes"** (botão verde)
-5. Clique em **"Commit changes"** novamente
-
----
-
-## **PASSO 3: Ativar o GitHub Pages**
-
-1. No seu repositório, clique na aba **"Settings"** (no topo)
-2. No menu lateral esquerdo, procure e clique em **"Pages"**
-3. Em **"Branch"**, selecione **"main"** no dropdown
-4. Deixe a pasta como **"/ (root)"**
-5. Clique em **"Save"**
-6. **Aguarde 1-2 minutos** ⏱️
-
----
-
-## **PASSO 4: Acessar seu jogo!** 🎉
-
-Depois de 1-2 minutos, seu jogo estará online em:
-```
-https://SEU-USUARIO.github.io/candy-match-game
