@@ -255,4 +255,4 @@ function CandyMatch() {
   );
 }
 
-ReactDOM.render(React.createElement(CandyMatch), document.getElementById('root'));
+ReactDOM.render(React.createElement(CandyMatch), document.getElementById('root')); 
