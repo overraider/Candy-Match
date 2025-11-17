@@ -176,39 +176,42 @@ function CandyMatch() {
   };
 
   return React.createElement('div', {
-    className: "min-h-screen bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500 flex items-center justify-center p-4"
+    className: "min-h-screen bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500 flex items-center justify-center p-2 sm:p-4"
   },
     React.createElement('div', {
-      className: "bg-white rounded-3xl shadow-2xl p-6 max-w-md w-full"
+      className: "bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-6 w-full max-w-md"
     },
-      React.createElement('div', { className: "text-center mb-6" },
+      // Header
+      React.createElement('div', { className: "text-center mb-3 sm:mb-6" },
         React.createElement('h1', {
-          className: "text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600 mb-2"
+          className: "text-2xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-600"
         }, '🌟 Candy Match')
       ),
       
+      // Stats Bar
       React.createElement('div', {
-        className: "flex justify-between mb-4 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-4"
+        className: "flex justify-between mb-3 sm:mb-4 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg sm:rounded-xl p-3 sm:p-4"
       },
-        React.createElement('div', { className: "text-center" },
-          React.createElement('div', { className: "text-sm font-semibold text-purple-600" }, 'Pontos'),
-          React.createElement('div', { className: "text-2xl font-bold text-purple-800" }, score)
+        React.createElement('div', { className: "text-center flex-1" },
+          React.createElement('div', { className: "text-xs sm:text-sm font-semibold text-purple-600" }, 'Score'),
+          React.createElement('div', { className: "text-xl sm:text-2xl font-bold text-purple-800" }, score)
         ),
-        React.createElement('div', { className: "text-center" },
-          React.createElement('div', { className: "text-sm font-semibold text-pink-600" }, 'Jogadas'),
-          React.createElement('div', { className: "text-2xl font-bold text-pink-800" }, moves)
+        React.createElement('div', { className: "text-center flex-1" },
+          React.createElement('div', { className: "text-xs sm:text-sm font-semibold text-pink-600" }, 'Moves'),
+          React.createElement('div', { className: "text-xl sm:text-2xl font-bold text-pink-800" }, moves)
         ),
-        combo > 1 && React.createElement('div', { className: "text-center animate-bounce" },
-          React.createElement('div', { className: "text-sm font-semibold text-yellow-600" }, 'Combo'),
-          React.createElement('div', { className: "text-2xl font-bold text-yellow-800" }, 'x' + combo)
+        combo > 1 && React.createElement('div', { className: "text-center flex-1 animate-bounce" },
+          React.createElement('div', { className: "text-xs sm:text-sm font-semibold text-yellow-600" }, 'Combo'),
+          React.createElement('div', { className: "text-xl sm:text-2xl font-bold text-yellow-800" }, 'x' + combo)
         )
       ),
 
+      // Game Grid - Mobile Optimized
       React.createElement('div', {
-        className: "bg-gradient-to-br from-purple-200 to-pink-200 rounded-2xl p-3 mb-4"
+        className: "bg-gradient-to-br from-purple-200 to-pink-200 rounded-xl sm:rounded-2xl p-2 sm:p-3 mb-3 sm:mb-4 touch-none"
       },
         React.createElement('div', {
-          className: "grid gap-1",
+          className: "grid gap-0.5 sm:gap-1",
           style: { gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)` }
         },
           grid.map((row, rowIndex) =>
@@ -218,13 +221,14 @@ function CandyMatch() {
                 onClick: () => handleCellClick(rowIndex, colIndex),
                 disabled: isAnimating || gameOver,
                 className: `
-                  aspect-square rounded-lg text-3xl flex items-center justify-center
-                  transition-all duration-200 transform
+                  aspect-square rounded-md sm:rounded-lg text-2xl sm:text-3xl flex items-center justify-center
+                  transition-all duration-200 transform active:scale-95
                   ${selected?.row === rowIndex && selected?.col === colIndex
-                    ? 'scale-110 bg-yellow-200 shadow-lg ring-4 ring-yellow-400'
-                    : 'bg-white hover:scale-105 hover:shadow-md'
+                    ? 'scale-110 bg-yellow-200 shadow-lg ring-2 sm:ring-4 ring-yellow-400'
+                    : 'bg-white hover:scale-105 hover:shadow-md active:shadow-sm'
                   }
                   ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'}
+                  touch-manipulation
                 `
               }, cell?.type)
             )
@@ -232,25 +236,26 @@ function CandyMatch() {
         )
       ),
 
+      // Game Over / Buttons
       gameOver ? 
-        React.createElement('div', { className: "text-center space-y-4" },
+        React.createElement('div', { className: "text-center space-y-3 sm:space-y-4" },
           React.createElement('div', {
-            className: "bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-4"
+            className: "bg-gradient-to-r from-yellow-400 to-orange-400 rounded-xl p-4 sm:p-6"
           },
-            React.createElement('div', { className: "text-white text-5xl mb-2" }, '🏆'),
-            React.createElement('div', { className: "text-white font-bold text-xl" }, 'Fim do Jogo!'),
-            React.createElement('div', { className: "text-white text-3xl font-bold" }, score + ' pontos')
+            React.createElement('div', { className: "text-white text-4xl sm:text-5xl mb-2" }, '🏆'),
+            React.createElement('div', { className: "text-white font-bold text-lg sm:text-xl" }, 'Game Over!'),
+            React.createElement('div', { className: "text-white text-2xl sm:text-3xl font-bold" }, score + ' points')
           ),
           React.createElement('button', {
             onClick: initializeGrid,
-            className: "w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all"
-          }, '🔄 Jogar Novamente')
+            className: "w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 sm:py-4 px-6 rounded-xl hover:from-purple-600 hover:to-pink-600 active:scale-95 transition-all text-base sm:text-lg touch-manipulation"
+          }, '🔄 Play Again')
         )
       :
         React.createElement('button', {
           onClick: initializeGrid,
-          className: "w-full bg-gray-100 text-gray-700 font-semibold py-3 px-6 rounded-xl hover:bg-gray-200 transition-all"
-        }, '🔄 Novo Jogo')
+          className: "w-full bg-gray-100 text-gray-700 font-semibold py-3 sm:py-4 px-6 rounded-xl hover:bg-gray-200 active:bg-gray-300 active:scale-95 transition-all text-base sm:text-lg touch-manipulation"
+        }, '🔄 New Game')
     )
   );
 }
